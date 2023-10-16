@@ -1,4 +1,12 @@
 import GuestbookContainer from "@/components/GuestbookContainer";
+import { Metadata } from "next";
+
+export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Guestbook",
+  description: "자유롭게 방명록을 남겨주세요.",
+};
 
 export default function Page() {
   return (

@@ -1,4 +1,10 @@
 import Hero from "@/components/Hero";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About",
+  description: "웹/앱 프론트엔드 개발자 차현우의 소개",
+};
 
 export default function Page() {
   return (
