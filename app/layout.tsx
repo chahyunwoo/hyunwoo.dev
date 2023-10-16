@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Providers from "../context/Providers";
 import Container from "@/components/Container";
+import SWRconfigContext from "@/context/SWRconfigContext";
 
 const sans = Open_Sans({ subsets: ["latin"] });
 
@@ -26,7 +27,9 @@ export default function RootLayout({
         <Providers>
           <Header />
           <main className="grow w-full mt-16 py-16 px-8">
-            <Container>{children}</Container>
+            <Container>
+              <SWRconfigContext>{children}</SWRconfigContext>
+            </Container>
           </main>
           <Footer />
         </Providers>

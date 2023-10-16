@@ -1,7 +1,4 @@
-interface Navlink {
-  title: string;
-  href: string;
-}
+import { Navlink } from "@/model/navlinks";
 
 export const navlinks: Navlink[] = [
   { title: "HOME", href: "/" },
