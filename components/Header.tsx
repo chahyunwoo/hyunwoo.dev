@@ -6,7 +6,7 @@ import MobileMenu from "./MobileMenu";
 
 export default function Header() {
   return (
-    <header className="border-b w-full px-8 fixed h-16 z-10 bg-neutral-100 dark:bg-neutral-900">
+    <header className="border-b w-full px-8 fixed h-14 md:h-16 z-10 bg-neutral-100 dark:bg-neutral-900">
       <div className="w-full h-full max-w-screen-lg mx-auto flex justify-between items-center">
         <Link href="/">
           <h1 className="font-bold">hyunwoo.dev</h1>

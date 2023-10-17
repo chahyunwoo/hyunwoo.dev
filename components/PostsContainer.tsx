@@ -17,9 +17,9 @@ export default function PostsContainer({ posts }: IProps) {
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
   const uniqueCategories = Array.from(
-    new Set(posts.map((post) => post.category))
+    new Set(posts.map((post) => post.category.toUpperCase()))
   );
-  const tabs = ["All", ...uniqueCategories];
+  const tabs = ["ALL", ...uniqueCategories];
 
   const filteredPosts = posts
     .filter((post) => selectedTab === "All" || post.category === selectedTab)

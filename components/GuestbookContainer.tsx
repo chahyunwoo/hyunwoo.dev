@@ -66,7 +66,7 @@ export default function GuestbookContiner() {
   const messageGroups = useGroupByMonth(slicedMessages);
 
   return (
-    <div className="mt-20">
+    <div className="mt-12">
       {loading && (
         <div className="w-full flex justify-center">
           <RotatingSpinner />
