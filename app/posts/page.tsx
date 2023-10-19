@@ -17,7 +17,7 @@ export default function Page() {
     <section className="mx-auto max-w-2xl">
       <h1 className="text-2xl font-bold text-center mb-4">POSTS</h1>
       <p className="text-sm text-center">기술 뿐만 아니라 일상을 공유합니다.</p>
-      <PostsContainer posts={posts} />
+      <PostsContainer isPostsPage posts={posts} />
     </section>
   );
 }

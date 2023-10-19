@@ -9,9 +9,10 @@ import PostsTabs from "./PostsTabs";
 
 interface IProps {
   posts: Post[];
+  isPostsPage?: boolean;
 }
 
-export default function PostsContainer({ posts }: IProps) {
+export default function PostsContainer({ posts, isPostsPage = false }: IProps) {
   const [selectedTab, setSelectedTab] = useState("ALL");
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
@@ -29,12 +30,16 @@ export default function PostsContainer({ posts }: IProps) {
 
   return (
     <>
-      <PostsTabs
-        tabs={tabs}
-        selectedTab={selectedTab}
-        onSelect={setSelectedTab}
-      />
-      <SearchBar value={searchTerm} onChange={setSearchTerm} />
+      {isPostsPage && (
+        <>
+          <PostsTabs
+            tabs={tabs}
+            selectedTab={selectedTab}
+            onSelect={setSelectedTab}
+          />
+          <SearchBar value={searchTerm} onChange={setSearchTerm} />
+        </>
+      )}
       {filteredPosts.map((post) => (
         <PostCard key={post._id} {...post} />
       ))}
