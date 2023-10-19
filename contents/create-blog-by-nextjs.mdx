@@ -27,6 +27,11 @@ date: 2023-10-19T21:24
   - Server-side Rendering(SSR)과 Static Site Generation(SSG)를 지원하는 `Next.js` Framework를 사용하였는데, 정적인 웹페이지인 블로그를 개발하는데에 있어 적합하다 생각하여 사용하게 되었습니다.<br/>
     `Next.js`의 사용 배경과 관련하여는 이전 [포스팅](/posts/start-nextjs-study)에 기재해두었습니다.
 
+- Content: `contentlayer`
+
+  - `Next.js`와 같은 모던 프레임워크에서 콘텐츠 기반의 어플리케이션을 만들 때 사용할 수 있는 데이터 레이어 솔루션입니다. 주로 정적 사이트 생성 (Static Site Genertion, SSG)과 같은 프로젝트에 유용합니다.<br/>
+    콘텐츠의 스키마와 모델에 대한 강력한 타입 안정성을 제공하고, 콘텐츠의 변경을 감지해 필요한 부분만 다시 빌드하는 기능을 제공하며, 정적 사이트 생성에 최적화 되어있다고 생각이 되어 선택했습니다.
+
 - Style: `Tailwind CSS`
 
   - 기존 `React` 프로젝트를 진행 시에는 `styled-components`나, `emotion` 등을 자주 사용했는데, `Tailwind CSS`는 랜더링 최적화를 위해 프로덕션 빌드 시 사용하지 않는 스타일을 제거하여 최적화된 CSS 파일을 생성할 수 있기 때문에 이를 채택하여 사용하게 되었습니다.<br/>
