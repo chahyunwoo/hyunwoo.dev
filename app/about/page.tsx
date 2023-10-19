@@ -13,10 +13,10 @@ export default function Page() {
       <div className="flex flex-col md:flex-row items-stretch justify-center gap-10 mt-8">
         <Hero />
         <div className="mt-4 md:mt-0 md:border-l md:pl-10">
-          <h2 className="text-xl font-bold">Front-end Engineer</h2>
+          <h2 className="text-xl font-bold">Web/App Full-stack Engineer</h2>
           <p className="my-4 text-lg">소통과 약속을 중요시하게 생각합니다.</p>
           <p className="leading-6 break-keep">
-            공부가 취미인 프론트엔드 개발자
+            공부가 취미인 풀스택 개발자
             <br />
             생생하고 역동적인 웹앱을 선호합니다.
             <br />
