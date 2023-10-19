@@ -1,9 +1,11 @@
 import { Post } from "@/.contentlayer/generated";
-import { format, parseISO } from "date-fns";
+import { useFormattedDate } from "@/hooks/useFormattedDate";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function PostCard(post: Post) {
+  const formattedDate = useFormattedDate(post.date);
+
   return (
     <Link
       href={post.url}
@@ -18,7 +20,7 @@ export default function PostCard(post: Post) {
             dateTime={post.date}
             className="block text-xs text-gray-400 dark:text-gray-600"
           >
-            {format(parseISO(post.date), "yyyy년 MM월 dd일")}
+            {formattedDate}
           </time>
         </div>
         <Image

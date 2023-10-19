@@ -2,6 +2,7 @@ import { allPosts } from "@/.contentlayer/generated";
 import { compareDesc } from "date-fns";
 import PostsContainer from "@/components/PostsContainer";
 import { Metadata } from "next";
+import { toKSTDate } from "@/hooks/useFormattedDate";
 
 export const metadata: Metadata = {
   title: "Posts",
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   const posts = allPosts.sort((a, b) =>
-    compareDesc(new Date(a.date), new Date(b.date))
+    compareDesc(toKSTDate(a.date), toKSTDate(b.date))
   );
 
   return (
