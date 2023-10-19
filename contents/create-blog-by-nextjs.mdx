@@ -1,0 +1,45 @@
+---
+title: Next.js를 사용하여 블로그 개발하기
+description: Next.js와 tailwind, 그리고 supabase를 사용한 방명록 구현까지
+image: /thumbnail/create-blog-by-nextjs.png
+category: DEVELOP
+date: 2023-10-19T21:24
+---
+
+현재 보시는 이 블로그 [hyunwoo.dev](https://chahyunwoo.dev)의 제작기에 대한 포스팅입니다.<br/>
+이 페이지는 `Next.js`를 통해 구현되었고, 다양한 기술 블로거들의 포스팅을 보며 많은 도움을 받아 제작되었습니다.<br/>
+
+제작기를 작성하며 스스로 피드백을 하고, 혹여나 누군가에겐 도움이 될 수도 있지 않을까 하여 작성했습니다.
+
+- [Github Repository](https://github.com/chahyunwoo/hyunwoo.dev)<br/>
+  _아직 개선할 사항이 많습니다._
+
+---
+
+### STACK
+
+- Language: `Typescript`
+
+  - `Javascript`의 슈퍼셋인 `Typescript`를 사용하여, 정적 타입 체크를 사용해 코드의 품질과 안정성을 향상시키기 위해 사용했습니다.
+
+- Framework: `Next.js`
+
+  - Server-side Rendering(SSR)과 Static Site Generation(SSG)를 지원하는 `Next.js` Framework를 사용하였는데, 정적인 웹페이지인 블로그를 개발하는데에 있어 적합하다 생각하여 사용하게 되었습니다.<br/>
+    `Next.js`의 사용 배경과 관련하여는 이전 [포스팅](/posts/start-nextjs-study)에 기재해두었습니다.
+
+- Style: `Tailwind CSS`
+
+  - 기존 `React` 프로젝트를 진행 시에는 `styled-components`나, `emotion` 등을 자주 사용했는데, `Tailwind CSS`는 랜더링 최적화를 위해 프로덕션 빌드 시 사용하지 않는 스타일을 제거하여 최적화된 CSS 파일을 생성할 수 있기 때문에 이를 채택하여 사용하게 되었습니다.<br/>
+    `Next.js`의 [공식문서](https://nextjs.org/docs/app/building-your-application/styling/tailwind-css)에도 Next.js와 가장 잘 맞는 CSS Framework 라고 명시하였습니다.
+
+- Backend: `Supabase`
+
+  - `Supabase`는 오픈 소스 `Firebase` 대안으로, 실시간 데이터베이스, 인증, 스토리지 등의 백엔드 기능을 제공하고, 서버리스 아키텍쳐를 지원합니다.<br/>
+    서비스의 설정이 비교적 간단하고, `Next.js`와의 연동도 쉬우며, 빠르게 프로토타이핑하고 기능을 구현할 수 있다고 생각하여 사용하게 되었습니다.<br/>
+    `Supabase`와 관련해서는 다음에 포스팅 하여 링크를 제공할 예정입니다.
+
+- Deploy: `Vercel`
+
+  - `Vercel`은 `Next.js`를 개발한 팀입니다. 따라서, `Next.js`와의 통합이 매우 간편하고 자연스럽습니다.<br/>
+    전통적인 CI/CD 도구와는 약간 다른 접근 방식을 가지고 있지만, 코드의 변경 사항을 자동으로 빌드하고, 배포하는 과정을 간소화하므로 CI/CD의 개념과 근접한 기능을 제공합니다.<br/>
+    Front-end 웹 어플리케이션의 지속적인 통합 및 배포에 필요한 주요 기능들을 제공하므로, 사용하게 되었습니다.
