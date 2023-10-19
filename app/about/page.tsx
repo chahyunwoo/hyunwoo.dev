@@ -13,7 +13,7 @@ export default function Page() {
       <div className="flex flex-col md:flex-row items-stretch justify-center gap-10 mt-8">
         <Hero />
         <div className="mt-4 md:mt-0 md:border-l md:pl-10">
-          <h2 className="text-xl font-bold">Web/App Full-stack Engineer</h2>
+          <h2 className="text-xl font-bold">WEB/APP Full-stack Engineer</h2>
           <p className="my-4 text-lg">소통과 약속을 중요시하게 생각합니다.</p>
           <p className="leading-6 break-keep">
             공부가 취미인 풀스택 개발자
@@ -32,7 +32,7 @@ export default function Page() {
             <br />
             등산과 축구를 좋아하고, 여행과 공연 관람을 좋아합니다.
             <br />
-            기술 포스팅 뿐만 아니라, 일상 공유를 통해 다양한 정보를 나누고
+            기술 포스팅뿐만 아니라, 일상 공유를 통해 다양한 정보를 나누고
             싶습니다.
           </p>
         </div>
