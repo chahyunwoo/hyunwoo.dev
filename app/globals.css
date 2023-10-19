@@ -40,7 +40,7 @@ body::-webkit-scrollbar-track {
 
 code {
   @apply bg-gray-200 dark:bg-gray-600;
-  padding: 0.125rem 0.5rem;
+  padding: 0.125rem 0.3rem;
   border-radius: 0.25rem;
 }
 
@@ -50,5 +50,10 @@ pre code {
 
 .prose :where(code):not(:where([class~="not-prose"] *))::before,
 .prose :where(code):not(:where([class~="not-prose"] *))::after {
+  content: "";
+}
+
+.prose blockquote p::before,
+.prose blockquote p::after {
   content: "";
 }
