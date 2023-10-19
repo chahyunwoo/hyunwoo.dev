@@ -12,7 +12,7 @@ interface IProps {
 }
 
 export default function PostsContainer({ posts }: IProps) {
-  const [selectedTab, setSelectedTab] = useState("All");
+  const [selectedTab, setSelectedTab] = useState("ALL");
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
@@ -22,7 +22,7 @@ export default function PostsContainer({ posts }: IProps) {
   const tabs = ["ALL", ...uniqueCategories];
 
   const filteredPosts = posts
-    .filter((post) => selectedTab === "All" || post.category === selectedTab)
+    .filter((post) => selectedTab === "ALL" || post.category === selectedTab)
     .filter((post) =>
       post.title.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
     );
