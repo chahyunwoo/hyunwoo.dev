@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
-import { Post } from '@/.contentlayer/generated';
-import useDebounce from '@/hooks/useDebounce';
+import { Post } from "@/.contentlayer/generated";
+import useDebounce from "@/hooks/useDebounce";
 
-import SearchBar from './atoms/SearchBar';
-import PostCard from './PostCard';
-import PostsTabs from './PostsTabs';
+import SearchBar from "./atoms/SearchBar";
+import PostCard from "./PostCard";
+import PostsTabs from "./PostsTabs";
 
 interface IProps {
   posts: Post[];
@@ -15,17 +15,17 @@ interface IProps {
 }
 
 export default function PostsContainer({ posts, isPostsPage = false }: IProps) {
-  const [selectedTab, setSelectedTab] = useState("ALL");
+  const [selectedTab, setSelectedTab] = useState("DAILY");
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
-  const categoryOrder = ["DEVELOP", "DAILY"];
+  const categoryOrder = ["DAILY", "DEVELOP"];
 
   const uniqueCategories = Array.from(
     new Set(posts.map((post) => post.category.toUpperCase()))
   ).sort((a, b) => categoryOrder.indexOf(a) - categoryOrder.indexOf(b));
 
-  const tabs = ["ALL", ...uniqueCategories];
+  const tabs = [...uniqueCategories, "ALL"];
 
   const filteredPosts = posts
     .filter((post) => selectedTab === "ALL" || post.category === selectedTab)

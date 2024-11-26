@@ -22,6 +22,27 @@ body::-webkit-scrollbar-track {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+@font-face {
+  font-family: "koPubWorld";
+  src: url("/fonts/KoPubWorld\ Dotum\ Medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "koPubWorld-Bold";
+  src: url("/fonts/KoPubWorld\ Dotum\ Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+.prose {
+  font-family: "koPubWorld";
+  line-height: 2;
+}
+
 .prose h2 {
   font-size: 1.8em;
 }
