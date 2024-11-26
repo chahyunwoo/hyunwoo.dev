@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import profileImage from "@/public/images/chahyunwoo-profile.jpg";
 
 export default function Hero() {
