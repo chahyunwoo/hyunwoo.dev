@@ -14,7 +14,8 @@ export default function Page() {
       <div className="flex flex-col md:flex-row items-stretch justify-center gap-10 mt-8">
         <Hero />
         <div className="mt-4 md:mt-0 md:border-l md:pl-10">
-          <h2 className="text-xl font-bold my-10">WEB/APP Developer</h2>
+          <h2 className="text-xl font-bold my-10">WEB/APP Developer (2017~)</h2>
+          <p className="my-1 text-lg">Soongsil Univ. Computer Science</p>
           <p className="my-1 text-lg">mail: chahyunwoobi@gmail.com</p>
           <p className="my-1 text-lg">instagram: aavecvous</p>
           <p className="my-1 text-lg">live in SEOUL / INCHEON</p>
