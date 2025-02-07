@@ -1,5 +1,8 @@
-import { supabase } from "@/service/supabase";
 import axios from "axios";
+
+import { GuestBook } from "@/model/guestbooks";
+
+import { supabase } from "./supabase";
 
 export const fetchGuestbook = async () => {
   const { data, error } = await supabase
@@ -12,8 +15,11 @@ export const fetchGuestbook = async () => {
   return data;
 };
 
-export const postGuestbook = async (message: string, color?: string) => {
-  const response = await axios.post("api/guestbook/post", { message, color });
+export const postGuestbook = async (message: string, color: string) => {
+  const response = await axios.post<{ data: GuestBook }>("api/guestbook/post", {
+    message,
+    color,
+  });
 
   if (response.status !== 200) throw new Error("Failed to post message");
 

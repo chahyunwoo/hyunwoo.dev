@@ -1,18 +1,28 @@
 "use client";
 
-import { useEffect, useState, FormEvent, ChangeEvent } from "react";
-import useGroupByMonth from "@/hooks/useGroupByMonth";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+
 import { COLORS } from "@/data/colors";
+import useGroupByMonth from "@/hooks/useGroupByMonth";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import {
+  fetchGuestbookMessages,
+  postGuestbookMessage,
+} from "@/store/features/guestbookSlice";
+
 import LoadMoreButton from "./atoms/LoadMoreButton";
-import useSWR, { mutate } from "swr";
 import RotatingSpinner from "./atoms/RotatingSpinner";
 import GuestbookForm from "./GuestbookForm";
 import GuestbookList from "./GuestbookList";
-import { fetchGuestbook, postGuestbook } from "@/service/guestbook";
 
 const DISPLAY_COUNT = 30;
 
 export default function GuestbookContiner() {
+  const dispatch = useAppDispatch();
+  const { messages, loading, error } = useAppSelector(
+    (state) => state.guestbook
+  );
+
   const [newMessage, setNewMessage] = useState<string>("");
   const [displayCount, setDisplayCount] = useState(DISPLAY_COUNT);
   const [inputColor, setInputColor] = useState<string>();
@@ -26,16 +36,9 @@ export default function GuestbookContiner() {
     setInputColor(getRandomColor());
   }, []);
 
-  const fetcher = async () => {
-    const data = await fetchGuestbook();
-    return data;
-  };
-
-  const {
-    data: messages,
-    isLoading: loading,
-    error,
-  } = useSWR("/api/guestbook", fetcher);
+  useEffect(() => {
+    dispatch(fetchGuestbookMessages());
+  }, [dispatch]);
 
   const handleMessageChange = (e: ChangeEvent<HTMLInputElement>) => {
     setNewMessage(e.target.value);
@@ -52,8 +55,14 @@ export default function GuestbookContiner() {
     setIsSubmitting(true);
 
     try {
-      const response = await postGuestbook(newMessage, inputColor);
-      mutate("/api/guestbook");
+      await dispatch(
+        postGuestbookMessage({
+          message: newMessage,
+          color: inputColor || "#000000",
+        })
+      ).unwrap();
+
+      await dispatch(fetchGuestbookMessages());
       setNewMessage("");
     } catch (error) {
       console.error("Error submitting message: ", error);

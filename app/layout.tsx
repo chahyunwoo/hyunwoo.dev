@@ -1,11 +1,13 @@
 import "./globals.css";
+
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import Providers from "../context/Providers";
+
 import Container from "@/components/Container";
-import SWRconfigContext from "@/context/SWRconfigContext";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+
+import Providers from "../context/Providers";
 
 const sans = Open_Sans({ subsets: ["latin"] });
 
@@ -30,9 +32,7 @@ export default function RootLayout({
         <Providers>
           <Header />
           <main className="grow w-full mt-16 py-16 px-8">
-            <Container>
-              <SWRconfigContext>{children}</SWRconfigContext>
-            </Container>
+            <Container>{children}</Container>
           </main>
           <Footer />
         </Providers>
