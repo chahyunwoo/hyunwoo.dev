@@ -2,13 +2,11 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import authReducer from "./features/authSlice";
 import guestBokReducer from "./features/guestbookSlice";
-import postReducer from "./features/postSlice";
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     guestbook: guestBokReducer,
-    posts: postReducer,
   },
 });
 
