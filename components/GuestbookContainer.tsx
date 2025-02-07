@@ -1,44 +1,33 @@
 "use client";
-
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+
+import { AnimatePresence, motion } from "framer-motion";
 
 import { COLORS } from "@/data/colors";
 import useGroupByMonth from "@/hooks/useGroupByMonth";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import {
-  fetchGuestbookMessages,
-  postGuestbookMessage,
-} from "@/store/features/guestbookSlice";
+import { GuestBook } from "@/model/guestbooks";
+import { fetchGuestbook, postGuestbook } from "@/service/guestbook";
 
 import LoadMoreButton from "./atoms/LoadMoreButton";
 import RotatingSpinner from "./atoms/RotatingSpinner";
 import GuestbookForm from "./GuestbookForm";
 import GuestbookList from "./GuestbookList";
 
-const DISPLAY_COUNT = 30;
+interface Props {
+  initialMessages: GuestBook[];
+}
 
-export default function GuestbookContiner() {
-  const dispatch = useAppDispatch();
-  const { messages, loading, error } = useAppSelector(
-    (state) => state.guestbook
-  );
-
+export default function GuestbookContainer({ initialMessages }: Props) {
+  const [messages, setMessages] = useState<GuestBook[]>(initialMessages);
   const [newMessage, setNewMessage] = useState<string>("");
-  const [displayCount, setDisplayCount] = useState(DISPLAY_COUNT);
-  const [inputColor, setInputColor] = useState<string>();
+  const [displayCount, setDisplayCount] = useState(30);
+  const [inputColor, setInputColor] = useState<string>("#696262");
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  function getRandomColor() {
-    return COLORS[Math.floor(Math.random() * COLORS.length)];
-  }
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setInputColor(getRandomColor());
+    setInputColor(COLORS[Math.floor(Math.random() * COLORS.length)]);
   }, []);
-
-  useEffect(() => {
-    dispatch(fetchGuestbookMessages());
-  }, [dispatch]);
 
   const handleMessageChange = (e: ChangeEvent<HTMLInputElement>) => {
     setNewMessage(e.target.value);
@@ -55,36 +44,45 @@ export default function GuestbookContiner() {
     setIsSubmitting(true);
 
     try {
-      await dispatch(
-        postGuestbookMessage({
-          message: newMessage,
-          color: inputColor || "#000000",
-        })
-      ).unwrap();
-
-      await dispatch(fetchGuestbookMessages());
+      await postGuestbook(newMessage, inputColor || "#000000");
+      const updatedMessages = await fetchGuestbook();
+      setMessages(updatedMessages);
+      setIsLoading(true);
       setNewMessage("");
+      setInputColor(COLORS[Math.floor(Math.random() * COLORS.length)]);
     } catch (error) {
       console.error("Error submitting message: ", error);
+      setIsLoading(false);
     } finally {
       setIsSubmitting(false);
+      setIsLoading(false);
     }
   };
 
-  const slicedMessages = messages ? messages.slice(0, displayCount) : [];
+  const slicedMessages = messages.slice(0, displayCount);
   const messageGroups = useGroupByMonth(slicedMessages);
 
   return (
     <div className="mt-12">
-      {loading && (
+      {isLoading && (
         <div className="w-full flex justify-center">
           <RotatingSpinner />
         </div>
       )}
       <div className="w-full">
-        {Object.entries(messageGroups).map(([key, monthMessages]) => (
-          <GuestbookList key={key} monthKey={key} messages={monthMessages} />
-        ))}
+        <AnimatePresence>
+          {Object.entries(messageGroups).map(([key, monthMessages]) => (
+            <motion.div
+              key={key}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <GuestbookList monthKey={key} messages={monthMessages} />
+            </motion.div>
+          ))}
+        </AnimatePresence>
 
         {messages && displayCount < messages.length && (
           <div className="w-full text-center">
