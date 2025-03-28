@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import Providers from "../context/Providers";
 import Container from "@/components/Container";
 import SWRconfigContext from "@/context/SWRconfigContext";
-
+import AnnouncementBar from "@/components/AnnouncementBar";
 const sans = Open_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -28,7 +28,8 @@ export default function RootLayout({
         className={`${sans.className} bg-neutral-100 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 flex flex-col`}
       >
         <Providers>
-          <Header />
+          <AnnouncementBar />
+          {/* <Header /> */}
           <main className="grow w-full mt-16 py-16 px-8">
             <Container>
               <SWRconfigContext>{children}</SWRconfigContext>

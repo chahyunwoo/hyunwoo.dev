@@ -59,6 +59,10 @@ body::-webkit-scrollbar-track {
   @apply decoration-green-400;
 }
 
+.prose p {
+  white-space: pre-line;
+}
+
 code {
   @apply bg-gray-200 dark:bg-gray-600;
   padding: 0.125rem 0.3rem;
